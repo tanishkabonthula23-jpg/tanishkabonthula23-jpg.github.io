@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Personal portfolio showcasing projects, skills, experience, and contact details." />
+  <title>Your Name | Portfolio</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="container nav-wrapper">
+      <a href="#top" class="logo">YN<span>.</span></a>
+
+      <button
+        type="button"
+        class="nav-toggle"
+        aria-label="Toggle navigation menu"
+        aria-expanded="false"
+        aria-controls="primary-nav"
+      >
+        ☰
+      </button>
+
+      <nav id="primary-nav" class="primary-nav" aria-label="Primary">
+        <a href="#about">About</a>
+        <a href="#skills">Skills</a>
+        <a href="#projects">Projects</a>
+        <a href="#experience">Experience</a>
+        <a href="#contact" class="btn btn-sm">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="top">
+    <!-- Hero Section -->
+    <section class="hero">
+      <div class="container hero-grid">
+        <div>
+          <p class="eyebrow">Hello, I'm</p>
+          <h1>Your Full Name</h1>
+          <p class="lead">
+            Software &amp; Web Developer focused on building clean, accessible, and reliable applications.
+          </p>
+          <div class="hero-actions">
+            <a href="#projects" class="btn">View Projects</a>
+            <a href="https://github.com/your-username" target="_blank" rel="noopener noreferrer" class="btn btn-outline">
+              GitHub
+            </a>
+            <a href="https://linkedin.com/in/your-profile" target="_blank" rel="noopener noreferrer" class="btn btn-outline">
+              LinkedIn
+            </a>
+          </div>
+        </div>
+
+        <aside class="hero-card" aria-label="Quick summary">
+          <h2>Quick Snapshot</h2>
+          <ul class="snapshot-list">
+            <li><strong>Location:</strong> City, Country</li>
+            <li><strong>Focus:</strong> Frontend, Backend &amp; Problem Solving</li>
+            <li><strong>Status:</strong> Open to Internships &amp; Collaborations</li>
+          </ul>
+          <!-- Optional: uncomment once assets/resume.pdf is added -->
+          <!-- <a href="./assets/resume.pdf" download class="text-link">Download Resume (PDF) →</a> -->
+        </aside>
+      </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="section">
+      <div class="container">
+        <h2 class="section-title">About Me</h2>
+        <p class="section-text">
+          Write 2–4 concise sentences about your background, what you enjoy building, and the kind of problems you like solving. Keep it clear and specific so visitors understand what you bring to a team.
+        </p>
+      </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="section section-alt">
+      <div class="container">
+        <h2 class="section-title">Skills</h2>
+        <div class="grid-3">
+          <article class="card">
+            <h3>Languages</h3>
+            <ul class="tag-list">
+              <li>HTML5</li>
+              <li>CSS3</li>
+              <li>JavaScript</li>
+              <li>Python</li>
+            </ul>
+          </article>
+
+          <article class="card">
+            <h3>Frameworks &amp; Libraries</h3>
+            <ul class="tag-list">
+              <li>React</li>
+              <li>Node.js</li>
+              <li>Responsive UI</li>
+            </ul>
+          </article>
+
+          <article class="card">
+            <h3>Tools &amp; Platforms</h3>
+            <ul class="tag-list">
+              <li>Git &amp; GitHub</li>
+              <li>VS Code</li>
+              <li>SQL / REST APIs</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="section">
+      <div class="container">
+        <h2 class="section-title">Featured Projects</h2>
+        <div class="grid-2">
+          <article class="card project-card">
+            <div class="project-meta">Featured Project</div>
+            <h3>Project Title One</h3>
+            <p>
+              Briefly explain what the project does, who it helps, and the main technical challenge you solved.
+            </p>
+            <ul class="tag-list">
+              <li>JavaScript</li>
+              <li>HTML/CSS</li>
+              <li>API</li>
+            </ul>
+            <div class="card-links">
+              <a href="https://github.com/your-username/project-one" target="_blank" rel="noopener noreferrer" class="text-link">
+                Source Code →
+              </a>
+              <a href="https://your-username.github.io/project-one/" target="_blank" rel="noopener noreferrer" class="text-link">
+                Live Demo →
+              </a>
+            </div>
+          </article>
+
+          <article class="card project-card">
+            <div class="project-meta">Academic / Hackathon</div>
+            <h3>Project Title Two</h3>
+            <p>
+              Describe your role, key features implemented, and any measurable outcome or what you learned.
+            </p>
+            <ul class="tag-list">
+              <li>Python</li>
+              <li>React</li>
+              <li>Git</li>
+            </ul>
+            <div class="card-links">
+              <a href="https://github.com/your-username/project-two" target="_blank" rel="noopener noreferrer" class="text-link">
+                Source Code →
+              </a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Experience & Achievements Section -->
+    <section id="experience" class="section section-alt">
+      <div class="container">
+        <h2 class="section-title">Experience &amp; Highlights</h2>
+        <div class="timeline">
+          <article class="card timeline-item">
+            <div class="timeline-header">
+              <h3>Role / Program / Certification Name</h3>
+              <span class="badge">2026</span>
+            </div>
+            <p class="org">Organization or Event Name</p>
+            <p>
+              Summarize what you built, learned, or achieved in one or two crisp sentences.
+            </p>
+          </article>
+
+          <article class="card timeline-item">
+            <div class="timeline-header">
+              <h3>Education / Milestone</h3>
+              <span class="badge">Ongoing</span>
+            </div>
+            <p class="org">Institution Name</p>
+            <p>
+              Mention your degree/program, relevant coursework, or key milestones.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="section">
+      <div class="container contact-box">
+        <div>
+          <h2 class="section-title">Get In Touch</h2>
+          <p class="section-text">
+            Want to collaborate on a project, discuss an internship, or say hello? Reach out directly by email or copy my address below.
+          </p>
+          <div class="contact-actions">
+            <a href="mailto:your.email@example.com" class="btn">Email Me</a>
+            <button type="button" id="copy-email-btn" class="btn btn-outline" data-email="your.email@example.com">
+              Copy Email
+            </button>
+          </div>
+          <p id="copy-status" class="status-text" role="status" aria-live="polite"></p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <p>© <span id="year"></span> Your Name. Built for GitHub Pages.</p>
+      <div class="footer-links">
+        <a href="https://github.com/your-username" target="_blank" rel="noopener noreferrer">GitHub</a>
+        <a href="https://linkedin.com/in/your-profile" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

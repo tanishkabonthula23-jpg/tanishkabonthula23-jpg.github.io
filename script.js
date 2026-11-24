@@ -1,153 +1,53 @@
-/* =========================================
-   1. Mobile Navigation Menu Toggle
-   ========================================= */
 document.addEventListener("DOMContentLoaded", () => {
-  const menuToggle =
-    document.querySelector(".menu-toggle") ||
-    document.querySelector(".hamburger") ||
-    document.querySelector("#menu-toggle") ||
-    document.querySelector("[data-menu-toggle]");
-
-  const navLinks =
-    document.querySelector(".nav-links") ||
-    document.querySelector("nav ul") ||
-    document.querySelector("#nav-links");
+  const menuToggle = document.querySelector(".menu-toggle");
+  const navLinks = document.querySelector(".nav-links");
 
   if (menuToggle && navLinks) {
-    menuToggle.addEventListener("click", (event) => {
-      event.stopPropagation();
-      navLinks.classList.toggle("active");
-      navLinks.classList.toggle("open");
-      navLinks.classList.toggle("show");
-
-      const isExpanded =
-        navLinks.classList.contains("active") ||
-        navLinks.classList.contains("open") ||
-        navLinks.classList.contains("show");
-      menuToggle.setAttribute("aria-expanded", String(isExpanded));
+    menuToggle.addEventListener("click", (e) => {
+      e.stopPropagation();
+      const isOpen = navLinks.classList.toggle("active");
+      menuToggle.setAttribute("aria-expanded", String(isOpen));
     });
 
-    // Close menu when clicking a navigation link
     navLinks.querySelectorAll("a").forEach((link) => {
       link.addEventListener("click", () => {
-        navLinks.classList.remove("active", "open", "show");
+        navLinks.classList.remove("active");
         menuToggle.setAttribute("aria-expanded", "false");
       });
     });
 
-    // Close menu when clicking outside
-    document.addEventListener("click", (event) => {
-      if (
-        !navLinks.contains(event.target) &&
-        !menuToggle.contains(event.target)
-      ) {
-        navLinks.classList.remove("active", "open", "show");
+    document.addEventListener("click", (e) => {
+      if (!navLinks.contains(e.target) && !menuToggle.contains(e.target)) {
+        navLinks.classList.remove("active");
         menuToggle.setAttribute("aria-expanded", "false");
       }
     });
   }
 
-  /* =========================================
-     2. Active Link Highlighting on Scroll
-     ========================================= */
-  const sections = document.querySelectorAll("section[id]");
-  const anchorLinks = document.querySelectorAll('a[href^="#"]');
-
-  if (sections.length > 0 && anchorLinks.length > 0) {
-    window.addEventListener(
-      "scroll",
-      () => {
-        let currentSectionId = "";
-        const scrollPosition = window.scrollY + 140;
-
-        sections.forEach((section) => {
-          const top = section.offsetTop;
-          const height = section.offsetHeight;
-          if (scrollPosition >= top && scrollPosition < top + height) {
-            currentSectionId = section.getAttribute("id");
-          }
-        });
-
-        anchorLinks.forEach((link) => {
-          const href = link.getAttribute("href");
-          if (href === `#${currentSectionId}`) {
-            link.classList.add("active");
-          } else if (href && href.startsWith("#") && href.length > 1) {
-            link.classList.remove("active");
-          }
-        });
-      },
-      { passive: true }
-    );
-  }
-
-  /* =========================================
-     3. Clipboard Copy Functionality
-     ========================================= */
-  // Supports elements with class="copy-btn", data-copy="text to copy",
-  // or data-copy-target="#element-id"
-  const copyButtons = document.querySelectorAll(
-    ".copy-btn, [data-copy], [data-copy-target]"
-  );
-
-  copyButtons.forEach((button) => {
-    button.addEventListener("click", async () => {
-      let textToCopy = button.getAttribute("data-copy") || "";
-
-      const targetSelector = button.getAttribute("data-copy-target");
-      if (!textToCopy && targetSelector) {
-        const targetEl = document.querySelector(targetSelector);
-        if (targetEl) {
-          textToCopy = targetEl.textContent.trim();
-        }
-      }
-
-      // Fallback: look for an email/text element nearby if none specified
-      if (!textToCopy) {
-        const emailEl =
-          button.parentElement?.querySelector("[data-email], .email-text, a[href^='mailto:']");
-        if (emailEl) {
-          textToCopy =
-            emailEl.getAttribute("data-email") ||
-            emailEl.textContent.replace(/^mailto:/i, "").trim();
-        }
-      }
-
-      if (!textToCopy) return;
+  // Copy email button handler
+  const copyButtons = document.querySelectorAll(".copy-btn");
+  copyButtons.forEach((btn) => {
+    btn.addEventListener("click", async () => {
+      const targetSelector = btn.getAttribute("data-copy-target");
+      const targetEl = targetSelector ? document.querySelector(targetSelector) : null;
+      const text = targetEl ? targetEl.textContent.trim() : "";
+      if (!text) return;
 
       try {
-        if (navigator.clipboard && window.isSecureContext) {
-          await navigator.clipboard.writeText(textToCopy);
-        } else {
-          const tempInput = document.createElement("textarea");
-          tempInput.value = textToCopy;
-          tempInput.setAttribute("readonly", "");
-          tempInput.style.position = "absolute";
-          tempInput.style.left = "-9999px";
-          document.body.appendChild(tempInput);
-          tempInput.select();
-          document.execCommand("copy");
-          document.body.removeChild(tempInput);
-        }
-
-        const originalText = button.textContent;
-        button.textContent = "Copied!";
-        button.classList.add("copied");
-
+        await navigator.clipboard.writeText(text);
+        const prev = btn.textContent;
+        btn.textContent = "Copied!";
         setTimeout(() => {
-          button.textContent = originalText;
-          button.classList.remove("copied");
-        }, 2000);
-      } catch (err) {
-        console.error("Clipboard copy failed:", err);
+          btn.textContent = prev;
+        }, 1800);
+      } catch {
+        // Fallback if clipboard permission is blocked
       }
     });
   });
 
-  /* =========================================
-     4. Dynamic Copyright Year (Optional)
-     ========================================= */
-  const yearEl = document.querySelector("#year, .current-year");
+  // Update footer year
+  const yearEl = document.getElementById("year");
   if (yearEl) {
     yearEl.textContent = String(new Date().getFullYear());
   }
